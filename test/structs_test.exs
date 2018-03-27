@@ -20,11 +20,13 @@ defmodule StructsTest do
     {:ok, concerts: concerts}
   end
 
+  @tag :skip
   test "list of all bands playing", %{concerts: concerts} do
     expected = ["Depeche Mode", "Rolling Stones", "Nickleback"]
     assert Structs.concert_names(concerts) == expected
   end
 
+  @tag :skip
   test "list of bands playing before June 15, 2018", %{concerts: concerts} do
     expected = ["Depeche Mode", "Rolling Stones"]
     actual = "2018-06-15T00:00:00Z"
