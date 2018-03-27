@@ -41,7 +41,4 @@ defmodule ConversionsTest do
     expected = [{:bar, 2196}, {:big, 2571442}]
     assert Conversions.map_to_list_with_even_values(map) == expected
   end
-
-
-
 end
