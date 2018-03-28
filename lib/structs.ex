@@ -18,10 +18,17 @@ defmodule Structs do
   end
 
   def concert_names(concerts) do
-    concerts
+    Enum.map(concerts, &(&1.name))
   end
 
   def concerts_before(date, concerts) do
     concerts
+    |> Enum.reduce([], fn(%{date: concert_date, name: name}, acc) ->
+      case DateTime.compare(concert_date, date) do
+        :lt -> [name | acc]
+        _ -> acc
+      end
+    end)
+    |> Enum.reverse
   end
 end
