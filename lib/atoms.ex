@@ -9,7 +9,7 @@ defmodule Atoms do
 
   @doc "Convert an atom to a string"
   def atom_to_string(atom) do
-    atom
+    "#{atom}"
   end
 
   @doc """
@@ -17,6 +17,9 @@ defmodule Atoms do
   Fortunately, there's a function that helps with this.
   """
   def string_to_atom(string) do
-    string
+    cond do
+      is_atom(string) -> string
+      true -> String.to_existing_atom(string)
+    end
   end
 end

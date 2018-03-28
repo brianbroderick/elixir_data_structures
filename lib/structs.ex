@@ -19,9 +19,17 @@ defmodule Structs do
 
   def concert_names(concerts) do
     concerts
+    |> Enum.map(fn(map) -> Map.get(map, :name) end)
   end
 
   def concerts_before(date, concerts) do
     concerts
+    |> Enum.reduce([], fn(concert, acc) ->
+      case (DateTime.compare(date, Map.get(concert, :date))) do
+        :gt -> [Map.get(concert, :name) | acc]
+        :lt -> acc
+      end
+    end)
+    |> Enum.reverse
   end
 end
